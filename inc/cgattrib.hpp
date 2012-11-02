@@ -5,32 +5,36 @@
 
 namespace cgpp
 {
-    class cgattrib
+
+enum attrtype{null, bl, i8, ui8, i16, ui16, i32, ui32, i64, ui64, f16, f32, f64};
+
+    class attr_base
     {
         protected:
             std::string name;
-            std::string type;
+            attrtype type;
             uint64 length;
             
             /* Reduce duplicate code by putting constructor code in a function. */
-            virtual void construct(std::string attrname, std::string attrtype)
+            virtual void construct(const std::string &attrname, attrtype atype)
             {
                 this->name = attrname;
-                this->type = attrtype;
+                this->type = atype;
+                this->length = 0;
             }
 
         public:
-            cgattrib()
+            attr_base()
             {
-                this->construct("", "");
+                this->construct("", null);
             }
             
-            cgattrib(std::string attrname)
+            attr_base(std::string name)
             {
-                this->construct(name, "");
+                this->construct(name, null);
             }
             
-            ~cgattrib(){}
+            ~attr_base(){}
             
             /* Return this attribute's name. */
             virtual std::string getName(void) = 0;

@@ -9,10 +9,19 @@
  */
 
 #if defined(_LP64)
-typedef int sint32;
+typedef char int8;
+typedef unsigned char uint8;
+typedef short int int16;
+typedef unsigned short int uint16;
+typedef int int32;
 typedef unsigned int uint32;
-typedef long int sint64;
+typedef long int int64;
 typedef unsigned long int uint64;
 #endif //For _LP64 typedefs
 
-#endif // For if statement defining CGTYPEDEFS_HPP
+typedef float float16; // Eventually this will be a class or struct.
+typedef float float32;
+typedef double float64;
+typedef long double float80;
+
+#endif // CGTYPEDEFS_HPP

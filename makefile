@@ -5,11 +5,11 @@ ARGS = http://www.cats.com/ ../../monkey.html
 BIN = bin/test
 OBJ_FILES = obj/main.o obj/cgattrib.o
 DEPS = inc/*.hpp
-STYLECHECKER = ~/Documents/CppCheckStyle/CppCheckStyle
 
 .PHONY : default memcheck clean
 
 default : $(BIN)
+	./bin/test
 
 bin : $(BIN) style
 
@@ -24,10 +24,6 @@ $(BIN) : $(OBJ_FILES) $(DEPS)
 obj/%.o : src/%.cpp $(DEPS)
 	@- mkdir -p obj
 	$(CC) -c -o $@ $< $(CFLAGS)
-	@ echo
-
-style :
-	$(STYLECHECKER) src/main.cpp $(DEPS)
 	@ echo
 
 clean :
