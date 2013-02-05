@@ -1,11 +1,9 @@
 #if !defined(CGTYPEDEFS_HPP)
 #define CGTYPEDEFS_HPP
 
-#include <limits> 
 /*
- * This file needs to be modified to use the templates found in <limits>
- * to figure out what the typedefs should be. The #defines are a bit
- * hacky for my taste.
+ * This file needs to be updated to use more accurate typedefs.
+ * This file currently assumes compilation on Linux on x86_64.
  */
 
 #if defined(_LP64)
@@ -19,9 +17,14 @@ typedef long int int64;
 typedef unsigned long int uint64;
 #endif //For _LP64 typedefs
 
-typedef float float16; // Eventually this will be a class or struct.
-typedef float float32;
-typedef double float64;
-typedef long double float80;
+/* 
+ * Eventually real16 will be a class or struct that only occupies 16 bits.
+ * For now it is simply typedefed as a float.
+ */
+typedef float real16; 
+typedef float real32;
+typedef double real64;
+typedef long double real128; // On x86 this is only 80 bits wide, not 128.
+typedef real32 real; // Real is a bit agnostic type. This should be used in most circumstances.
 
-#endif // CGTYPEDEFS_HPP
+#endif // defined CGTYPEDEFS_HPP
